@@ -3,6 +3,11 @@
   padding: 0;
 } */
 
+body {
+	font-family: 'Philosopher', sans-serif;
+}
+
+
 .container {
   position: absolute;
   top: 40%;
