@@ -19,3 +19,9 @@ body {
 #radius {
   margin-right: 10px;
 }
+
+input {
+	margin:10px;
+	padding: 10px;
+	border: 1px solid;
+}

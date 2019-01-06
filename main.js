@@ -1,7 +1,23 @@
 let btn = document.getElementById('btn');
+
+//initiate current btc variable;
+let btcToday;
+
+//fetching current btc via API;
+let url = 'https://api.coindesk.com/v1/bpi/currentprice.json';
+  fetch(url)
+  .then(function(response){
+    return response.json();
+  })
+  .then(function(data){
+    let output = data.bpi.USD.rate;
+    btcToday = Number(output.replace(/,/g, ''));
+  })
+
+  //Click Event
 btn.addEventListener('click', function(){
+
   let btcBought = document.getElementById('btcBought').value;
-  let btcToday = document.getElementById('btcToday').value;
   let btcAmount = document.getElementById('btcAmount').value;
   let message = document.getElementById('message');
   let profit = (btcToday * btcAmount) - (btcBought * btcAmount);
@@ -21,3 +37,25 @@ btn.addEventListener('click', function(){
   
   message.innerHTML = result;
 })
+
+// function changeColor(){
+//     let r = Math.floor(Math.random() * 255);
+//     let g = Math.floor(Math.random() * 255);
+//     let b = Math.floor(Math.random() * 255);
+//     document.body.style.backgroundColor = `rgb(${r} ${g} ${b})`;
+// };
+
+// setInterval('changeColor()', 1000);
+// function getRealTimeBitcoinPrice(){
+//   let url = 'https://api.coindesk.com/v1/bpi/currentprice.json';
+//   fetch(url)
+//   .then(function(response){
+//     return response.json();
+//   })
+//   .then(function(data){
+//     let output = data.bpi.USD.rate;
+//     btc = Number(output.replace(/,/g, ''));
+//     console.log(btc);
+//     //console.log(btcToday.value);
+//   })
+// }
