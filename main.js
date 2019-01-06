@@ -11,12 +11,12 @@ let url = 'https://api.coindesk.com/v1/bpi/currentprice.json';
   })
   .then(function(data){
     let output = data.bpi.USD.rate;
-    btcToday = Number(output.replace(/,/g, ''));
+    btcToday = Number(output.replace(/,/g, '')).toFixed(2);
   })
 
   //Click Event
 btn.addEventListener('click', function(){
-
+  document.getElementById('btcToday').value = btcToday;
   let btcBought = document.getElementById('btcBought').value;
   let btcAmount = document.getElementById('btcAmount').value;
   let message = document.getElementById('message');
@@ -28,9 +28,9 @@ btn.addEventListener('click', function(){
   let lp = Math.round(lossPercentage);
   let result;
   if(profit > 0){
-  	result = `<p style = "color: green; font-size: 20px; font-weight:bold;">Great! You made a profit of $${profit} (${pp}%).</p>`	
+  	result = `<p style = "color: green; font-size: 20px; font-weight:bold;">Great! You made a profit of $${profit.toFixed(2)} (${pp}%).</p>`	
   } else if (profit < 0){
-  	result = `<p style = "color: red; font-size: 20px; font-weight:bold;">Oh! You made a loss of $${loss} (${lp}%).</p>`
+  	result = `<p style = "color: red; font-size: 20px; font-weight:bold;">Oh! You made a loss of $${loss.toFixed(2)} (${lp}%).</p>`
   } else {
   	result = `<p style = "color: blue; font-size: 20px; font-weight:bold;">Cool, You break even</p>`
   }
