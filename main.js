@@ -3,20 +3,27 @@ let btn = document.getElementById('btn');
 //initiate current btc variable;
 let btcToday;
 
+//DOM loaded!
+document.addEventListener('DOMContentLoaded', getBtc);
+
 //fetching current btc via API;
-let url = 'https://api.coindesk.com/v1/bpi/currentprice.json';
+function getBtc(){
+  let url = 'https://api.coindesk.com/v1/bpi/currentprice.json';
   fetch(url)
   .then(function(response){
     return response.json();
   })
   .then(function(data){
+    console.log(data);
     let output = data.bpi.USD.rate;
     btcToday = Number(output.replace(/,/g, '')).toFixed(2);
+    document.getElementById('btcToday').value = btcToday;
   })
+}
 
-  //Click Event
+//Click Event
 btn.addEventListener('click', function(){
-  document.getElementById('btcToday').value = btcToday;
+  
   let btcBought = document.getElementById('btcBought').value;
   let btcAmount = document.getElementById('btcAmount').value;
   let message = document.getElementById('message');
